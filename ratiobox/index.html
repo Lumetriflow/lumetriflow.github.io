@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aspect Ratio Calculator</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+        #canvasContainer {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎥 Aspect Ratio Calculator</h1>
+
+    <label>Width: <input type="number" id="widthInput" value="1920"></label>
+    <br><br>
+    <label>Height: <input type="number" id="heightInput" value="1080"></label>
+    <br><br>
+
+    <label>
+        <input type="checkbox" id="lockRatio">
+        Lock Aspect Ratio
+    </label>
+    <br><br>
+
+    <button onclick="calculateAspectRatio()">Calculate</button>
+
+    <h2 id="output"></h2>
+
+    <div id="canvasContainer">
+        <canvas id="ratioCanvas" width="300" height="300" style="border:1px solid #ccc;"></canvas>
+    </div>
+
+    <script>
+        let locked = false;
+        let originalRatio = 16 / 9;
+
+        // Find GCD (Greatest Common Divisor) to simplify ratio
+        function gcd(a, b) {
+            return b == 0 ? a : gcd(b, a % b);
+        }
+
+        function calculateAspectRatio() {
+            let width = parseInt(document.getElementById('widthInput').value, 10);
+            let height = parseInt(document.getElementById('heightInput').value, 10);
+            const lock = document.getElementById('lockRatio').checked;
+
+            if (lock && !locked) {
+                // Save the current ratio on first lock
+                originalRatio = width / height;
+                locked = true;
+            }
+
+            if (lock && locked) {
+                // Adjust height based on locked ratio
+                height = Math.round(width / originalRatio);
+                document.getElementById('heightInput').value = height;
+            } else {
+                locked = false; // Unlock if checkbox is unchecked
+            }
+
+            // Simplify the ratio
+            const divisor = gcd(width, height);
+            const simplifiedWidth = width / divisor;
+            const simplifiedHeight = height / divisor;
+
+            document.getElementById('output').textContent = `Aspect Ratio: ${simplifiedWidth}:${simplifiedHeight}`;
+
+            drawShape(simplifiedWidth, simplifiedHeight);
+        }
+
+        function drawShape(ratioWidth, ratioHeight) {
+            const canvas = document.getElementById('ratioCanvas');
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Fit inside canvas (max 250px)
+            const maxDimension = 250;
+            let drawWidth, drawHeight;
+
+            if (ratioWidth > ratioHeight) {
+                drawWidth = maxDimension;
+                drawHeight = (ratioHeight / ratioWidth) * maxDimension;
+            } else {
+                drawHeight = maxDimension;
+                drawWidth = (ratioWidth / ratioHeight) * maxDimension;
+            }
+
+            ctx.fillStyle = "#4CAF50";
+            ctx.fillRect(
+                (canvas.width - drawWidth) / 2,
+                (canvas.height - drawHeight) / 2,
+                drawWidth,
+                drawHeight
+            );
+        }
+
+        // Calculate initially
+        window.onload = calculateAspectRatio;
+    </script>
+</body>
+</html>

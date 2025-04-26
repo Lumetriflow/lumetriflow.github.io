@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Projects</title>
+    <style>
+        body {
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+    </style>
+</head>
+<body id="page">
+    <h1>🚀 Welcome to My Projects!</h1>
+
+    <button id="darkModeBtn" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+
+    <p>Select an app to open:</p>
+    <ul>
+        <li><a href="lockbox/">🔒 Lockbox - Encrypt/Decrypt Messages</a></li>
+        <li><a href="ratiobox/">🎥 Aspect Ratio Calculator</a></li>
+        <!-- more to be added ... -->
+
+    </ul>
+
+    <p>Made with ❤️ by lumetriflow</p>
+
+    <script>
+        function applyDarkMode(isDark) {
+            const page = document.getElementById('page');
+            const button = document.getElementById('darkModeBtn');
+            
+            if (isDark) {
+                page.style.backgroundColor = 'black';
+                page.style.color = 'white';
+                button.textContent = "☀️ Light Mode";
+            } else {
+                page.style.backgroundColor = 'white';
+                page.style.color = 'black';
+                button.textContent = "🌙 Dark Mode";
+            }
+        }
+
+        function toggleDarkMode() {
+            const isDark = localStorage.getItem('darkMode') === 'true';
+            const newMode = !isDark;
+            applyDarkMode(newMode);
+            localStorage.setItem('darkMode', newMode);
+        }
+
+        window.onload = function() {
+            let isDark = localStorage.getItem('darkMode');
+
+            if (isDark === null) {
+                // No preference saved yet — detect system preference
+                isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                localStorage.setItem('darkMode', isDark);
+            } else {
+                isDark = isDark === 'true';
+            }
+
+            applyDarkMode(isDark);
+        };
+    </script>
+</body>
+</html>
