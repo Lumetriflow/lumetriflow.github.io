@@ -2,64 +2,90 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Projects</title>
-    <style>
-        body {
-            transition: background-color 0.5s ease, color 0.5s ease;
+    <title>lumetriflow</title>
+        <style>
+        /* Basic CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body#page {
+            background-color: #282828;
+            color: #ebdbb2;
+            font-family: 'Fira Code', monospace;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        h1 {
+            color: #fabd2f;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        p {
+            margin: 15px 0;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        li {
+            background-color: #3c3836;
+            margin: 10px 0;
+            border: 1px solid #504945;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        li:hover {
+            background-color: #504945;
+        }
+
+        a {
+            display: block;
+            padding: 15px;
+            text-decoration: none;
+            color: #ebdbb2;
+            font-size: 1.1rem;
+        }
+
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            a {
+                font-size: 1rem;
+                padding: 12px;
+            }
         }
     </style>
 </head>
 <body id="page">
-    <h1>🚀 Welcome to My Projects!</h1>
-
-    <button id="darkModeBtn" onclick="toggleDarkMode()">🌙 Dark Mode</button>
-
-    <p>Select an app to open:</p>
+    <h1>🚀 Awesome tools!</h1>
     <ul>
-        <li><a href="lockbox/">🔒 Lockbox - Encrypt/Decrypt Messages</a></li>
+
+        <li><a href="lockbox/">🔒 Encrypt/Decrypt Messages</a></li>
         <li><a href="ratiobox/">🎥 Aspect Ratio Calculator</a></li>
-        <!-- more to be added ... -->
-
+        <!-- more to be added soon.. -->
+        
     </ul>
-
-    <p>Made with ❤️ by lumetriflow</p>
-
-    <script>
-        function applyDarkMode(isDark) {
-            const page = document.getElementById('page');
-            const button = document.getElementById('darkModeBtn');
-            
-            if (isDark) {
-                page.style.backgroundColor = 'black';
-                page.style.color = 'white';
-                button.textContent = "☀️ Light Mode";
-            } else {
-                page.style.backgroundColor = 'white';
-                page.style.color = 'black';
-                button.textContent = "🌙 Dark Mode";
-            }
-        }
-
-        function toggleDarkMode() {
-            const isDark = localStorage.getItem('darkMode') === 'true';
-            const newMode = !isDark;
-            applyDarkMode(newMode);
-            localStorage.setItem('darkMode', newMode);
-        }
-
-        window.onload = function() {
-            let isDark = localStorage.getItem('darkMode');
-
-            if (isDark === null) {
-                // No preference saved yet — detect system preference
-                isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                localStorage.setItem('darkMode', isDark);
-            } else {
-                isDark = isDark === 'true';
-            }
-
-            applyDarkMode(isDark);
-        };
-    </script>
+    <p>Made with</p>
+    <p>❤️</p>
 </body>
 </html>
