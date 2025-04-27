@@ -1,0 +1,39 @@
+body {
+    background-color: #282828;
+    color: #ebdbb2;
+    font-family: 'Fira Code', monospace;
+    padding: 20px;
+}
+h1{
+    text-align: center;
+}
+h1, h2 {
+    color: #fabd2f;
+}
+
+textarea, input[type="password"] {
+    background-color: #3c3836;
+    color: #ebdbb2;
+    border: 1px solid #504945;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #458588;
+    color: #ebdbb2;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #689d6a;
+}
