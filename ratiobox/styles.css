@@ -1,0 +1,90 @@
+/* Basic CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body#page {
+    background-color: #282828;
+    color: #ebdbb2;
+    font-family: 'Fira Code', monospace;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+}
+
+h1 {
+    color: #fabd2f;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 2rem;
+}
+
+label {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    display: block;
+}
+
+input[type="number"], input[type="checkbox"] {
+    margin-left: 10px;
+    background: #3c3836;
+    border: 1px solid #504945;
+    color: #ebdbb2;
+    border-radius: 6px;
+    padding: 8px;
+    font-size: 1rem;
+}
+
+h2#output {
+    margin-top: 30px;
+    font-size: 1.5rem;
+    color: #b8bb26; /* Gruvbox green for results */
+    text-align: center;
+}
+
+.top {
+    display: flex; flex-direction: column;
+}
+
+#canvasContainer {
+    margin-top: 30px;
+    background: #3c3836;
+    border: 1px solid #504945;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+canvas {
+    background: #1d2021;
+    border: 1px solid #504945;
+    border-radius: 5px;
+}
+
+@media (max-width: 600px) {
+    input[type="number"] {
+        width: 100%;
+        margin-top: 8px;
+    }
+
+    label {
+        margin-bottom: 20px;
+    }
+
+    #canvasContainer {
+        width: 100%;
+        padding: 10px;
+    }
+
+    canvas {
+        width: 100%;
+        height: auto;
+    }
+}

@@ -3,20 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>RatioBox - Aspect Ratio Calculator</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            padding: 20px;
-        }
-        #canvasContainer {
-            margin-top: 20px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
+<h1>🎥 RatioBox</h1>
 <body id="page">
-    <h1>🎥 RatioBox - Aspect Ratio Calculator</h1>
-
-    <label>Width: <input type="number" id="widthInput" value="1920" oninput="onWidthChange()"></label>
+<div class="top">
+    
+    <label>Width : <input type="number" id="widthInput" value="1920" oninput="onWidthChange()"></label>
     <br><br>
     <label>Height: <input type="number" id="heightInput" value="1080" oninput="onHeightChange()"></label>
     <br><br>
@@ -26,9 +19,7 @@
         Lock Aspect Ratio
     </label>
     <br><br>
-
-    <button onclick="calculateAspectRatio()">Calculate</button>
-
+</div>
     <h2 id="output"></h2>
 
     <div id="canvasContainer">
