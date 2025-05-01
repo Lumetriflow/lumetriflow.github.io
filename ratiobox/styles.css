@@ -41,7 +41,6 @@ input[type="number"], input[type="checkbox"] {
 }
 
 h2#output {
-    margin-top: 30px;
     font-size: 1.5rem;
     color: #b8bb26; /* Gruvbox green for results */
     text-align: center;
@@ -52,11 +51,10 @@ h2#output {
 }
 
 #canvasContainer {
-    margin-top: 30px;
+    margin-top: 10px;
     background: #3c3836;
     border: 1px solid #504945;
     border-radius: 10px;
-    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
