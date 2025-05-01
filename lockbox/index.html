@@ -7,18 +7,20 @@
 </head>
 <body>
     <h1>🔒 Lockbox</h1>
-
+    <div class="container">
+        
     <h2>Encrypt</h2>
-    <textarea id="plaintext" placeholder="Enter message to encrypt" rows="4" cols="50"></textarea><br><br>
-    <input type="password" id="passphrase" placeholder="Passphrase"><br><br>
-    <button onclick="encryptMessage()">Encrypt</button><br><br>
-    <textarea id="ciphertext" placeholder="Encrypted output" rows="4" cols="50" readonly></textarea>
+    <textarea id="plaintext" placeholder="Enter message to encrypt" rows="4" cols="50"></textarea><br>
+    <input type="password" id="passphrase" placeholder="Passphrase"><br>
+    <button onclick="encryptMessage()">Encrypt</button><br>
+    <textarea id="ciphertext" placeholder="Encrypted output" rows="4" cols="50" readonly></textarea><br><br>
 
     <h2>Decrypt</h2>
-    <textarea id="cipherInput" placeholder="Paste encrypted message here" rows="4" cols="50"></textarea><br><br>
-    <input type="password" id="passphraseDecrypt" placeholder="Passphrase"><br><br>
-    <button onclick="decryptMessage()">Decrypt</button><br><br>
+    <textarea id="cipherInput" placeholder="Paste encrypted message here" rows="4" cols="50"></textarea><br>
+    <input type="password" id="passphraseDecrypt" placeholder="Passphrase"><br>
+    <button onclick="decryptMessage()">Decrypt</button><br>
     <textarea id="decryptedText" placeholder="Decrypted output" rows="4" cols="50" readonly></textarea>
+    </div>
 
     <script>
         async function getKey(passphrase, salt) {
