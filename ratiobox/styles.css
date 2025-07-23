@@ -25,6 +25,8 @@ h1 {
 }
 
 label {
+    display: flex;
+    align-items: center;
     font-size: 1.1rem;
     margin-bottom: 10px;
     display: block;
@@ -40,14 +42,25 @@ input[type="number"], input[type="checkbox"] {
     font-size: 1rem;
 }
 
+input[type="number"]:hover {
+    border-color: #b8bb26;
+}
+input, label, h2#output {
+    transition: all 0.2s ease-in-out;
+}
 h2#output {
     font-size: 1.5rem;
     color: #b8bb26; /* Gruvbox green for results */
     text-align: center;
+    text-shadow: 0 0 5px #b8bb26;
 }
 
 .top {
     display: flex; flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    gap: 15px;
+    margin-bottom: 20px;
 }
 
 #canvasContainer {
