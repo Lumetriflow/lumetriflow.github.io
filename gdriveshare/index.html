@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Drive Link Converter</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🔗 Drive Link Converter</h1>
+        <p class="subtitle">Convert Google Drive share links to direct download links</p>
+        
+        <div class="input-group">
+            <label for="shareLink">Google Drive Share Link:</label>
+            <input type="url" id="shareLink" placeholder="https://drive.google.com/file/d/FILE_ID/view?usp=sharing">
+        </div>
+        
+        <div class="button-group">
+            <button class="convert-btn" onclick="convertLink()">Convert Link</button>
+            <button class="clear-btn" onclick="clearAll()">Clear</button>
+        </div>
+        
+        <div id="result" class="result">
+            <div class="result-label">Direct Download Link:</div>
+            <div id="resultLink" class="result-link"></div>
+            <button class="copy-btn" onclick="copyToClipboard()">Copy Link</button>
+        </div>
+        
+        <div id="error" class="error" style="display: none;"></div>
+        
+        <div class="info">
+            <h3>How to use:</h3>
+            <p>1. Get a shareable link from Google Drive (right-click → Get link → Anyone with the link can view)</p>
+            <p>2. Paste the link above and click "Convert Link"</p>
+            <p>3. Use the generated direct download link to download the file directly</p>
+            <p><strong>Note:</strong> The file must be publicly accessible for direct download to work.</p>
+        </div>
+    </div>
+
+    <script>
+        function convertLink() {
+            const shareLink = document.getElementById('shareLink').value.trim();
+            const resultDiv = document.getElementById('result');
+            const resultLink = document.getElementById('resultLink');
+            const errorDiv = document.getElementById('error');
+            
+            // Clear previous results
+            resultDiv.classList.remove('show');
+            errorDiv.style.display = 'none';
+            
+            if (!shareLink) {
+                showError('Please enter a Google Drive share link.');
+                return;
+            }
+            
+            // Extract file ID from various Google Drive URL formats
+            let fileId = extractFileId(shareLink);
+            
+            if (!fileId) {
+                showError('Invalid Google Drive link. Please make sure you\'re using a valid Google Drive share link.');
+                return;
+            }
+            
+            // Generate direct download link
+            const directLink = `https://drive.google.com/uc?export=download&id=${fileId}`;
+            
+            // Show result
+            resultLink.textContent = directLink;
+            resultDiv.classList.add('show');
+        }
+        
+        function extractFileId(url) {
+            // Handle various Google Drive URL formats
+            const patterns = [
+                /\/file\/d\/([a-zA-Z0-9-_]+)/,  // Standard share link
+                /id=([a-zA-Z0-9-_]+)/,          // Direct download link
+                /folders\/([a-zA-Z0-9-_]+)/     // Folder link (though this won't work for direct download)
+            ];
+            
+            for (let pattern of patterns) {
+                const match = url.match(pattern);
+                if (match) {
+                    return match[1];
+                }
+            }
+            
+            return null;
+        }
+        
+        function copyToClipboard() {
+            const resultLink = document.getElementById('resultLink');
+            const copyBtn = document.querySelector('.copy-btn');
+            
+            // Create a temporary textarea to copy the text
+            const textarea = document.createElement('textarea');
+            textarea.value = resultLink.textContent;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            
+            // Show feedback
+            const originalText = copyBtn.textContent;
+            copyBtn.textContent = 'Copied!';
+            copyBtn.classList.add('copied');
+            
+            setTimeout(() => {
+                copyBtn.textContent = originalText;
+                copyBtn.classList.remove('copied');
+            }, 2000);
+        }
+        
+        function clearAll() {
+            document.getElementById('shareLink').value = '';
+            document.getElementById('result').classList.remove('show');
+            document.getElementById('error').style.display = 'none';
+        }
+        
+        function showError(message) {
+            const errorDiv = document.getElementById('error');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+        }
+        
+        // Allow Enter key to trigger conversion
+        document.getElementById('shareLink').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                convertLink();
+            }
+        });
+        
+        // Auto-focus on input when page loads
+        window.addEventListener('load', function() {
+            document.getElementById('shareLink').focus();
+        });
+    </script>
+</body>
+</html>
