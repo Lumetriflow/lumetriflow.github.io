@@ -1,0 +1,94 @@
+/* Basic CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body#page {
+    background-color: #282828;
+    color: #ebdbb2;
+    font-family: 'Fira Code', monospace;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+}
+
+h1 {
+    color: #fabd2f;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 2rem;
+}
+
+label {
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="number"],
+select {
+    margin-top: 8px;
+    width: 100%;
+    background: #3c3836;
+    border: 1px solid #504945;
+    color: #ebdbb2;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+select:hover,
+input[type="number"]:hover {
+    border-color: #b8bb26;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 6px;
+    background: #b8bb26;
+    color: #1d2021;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover:not(:disabled) {
+    background: #98971a;
+}
+
+button:disabled {
+    background: #665c54;
+    cursor: not-allowed;
+}
+
+input, label {
+    transition: all 0.2s ease-in-out;
+}
+
+.top {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 600px) {
+    input[type="number"],
+    select {
+        width: 100%;
+    }
+
+    label {
+        margin-bottom: 15px;
+    }
+}
